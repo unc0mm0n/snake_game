@@ -47,6 +47,12 @@ class Vector2(object):
         yield self.x
         yield self.y
 
+    def __eq__(self, other):
+        for v, w in zip(self, other):
+            if v != w:
+                return False
+        return True
+
     # Basic operations
 
     def __add__(self, other):
