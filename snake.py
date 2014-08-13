@@ -42,6 +42,10 @@ class Snake(object):
         if direction != -self.direction:
             self.direction = direction
 
+    def grow(self):
+        self.growth_pending += 1
+        self.speed += SNAKE_SPEED_INCREMENT
+
     def update(self, dt, new_direction = None):
         self.timer -= dt
 
@@ -60,17 +64,31 @@ class Snake(object):
         else:
             self.segments.dequeue()
 
+    def self_intersecting(self):
+        """ Return True if the self is currently self intersecting"""
+        it = iter(self)
+        head = next(it)
+        return head in it
 
 
 
 if __name__ == '__main__':
     s = Snake(Vector2(0,0), 5)
     print(s)
-    for _ in range(5):
-        s.update(300)
-        print(s)
     s.change_direction(Vector2(1, 0))
-    s.change_direction(Vector2(-1, 0))
-    for _ in range(5):
+    for _ in range(1):
         s.update(300)
-        print(s)
+    print(s)
+    print(s.self_intersecting())
+    s.change_direction(Vector2(0, 1))
+    for _ in range(1):
+        s.update(300)
+    print(s)
+    print(s.self_intersecting())
+    s.change_direction(Vector2(-1, 0))
+    for _ in range(1):
+        s.update(300)
+    print(s)
+    print(s.self_intersecting())
+    
+    
