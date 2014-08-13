@@ -37,21 +37,22 @@ class Vector2(object):
         supports addition and subtraction of vectors, and multiplication and division by a scalar
     '''
     def __init__(self, x, y):
-        self.x = x
-        self.y = y
+        self.pos = (x, y)
 
     def __repr__(self):
-        return 'Vector2({}, {})'.format(self.x, self.y)
+        return 'Vector2({}, {})'.format(*[a for a in self.pos])
 
     def __iter__(self):
-        yield self.x
-        yield self.y
+        return iter(self.pos)
 
     def __eq__(self, other):
         for v, w in zip(self, other):
             if v != w:
                 return False
         return True
+
+    def __hash__(self):
+        return sum(self.pos)
 
     # Basic operations
 
