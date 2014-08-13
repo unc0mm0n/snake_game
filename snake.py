@@ -52,10 +52,10 @@ class Snake(object):
         if self.timer > 0:
             return
 
-        self.timer = 1000 / self.speed
+        self.timer += 1000 / self.speed
 
         if new_direction:
-            change_direction(new_direction)
+            self.change_direction(new_direction)
 
         self.head = self.head + self.direction
         self.segments.enqueue(self.head)
