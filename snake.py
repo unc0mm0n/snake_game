@@ -66,29 +66,21 @@ class Snake(object):
 
     def self_intersecting(self):
         """ Return True if the self is currently self intersecting"""
-        it = iter(self)
-        head = next(it)
-        return head in it
+        heads = 0
+        for seg in self:
+            if seg == self.head:
+                heads += 1
+        return heads > 1
 
 
 
 if __name__ == '__main__':
     s = Snake(Vector2(0,0), 5)
     print(s)
-    s.change_direction(Vector2(1, 0))
-    for _ in range(1):
-        s.update(300)
+    print(s.head)
+    s.update(300)
     print(s)
-    print(s.self_intersecting())
-    s.change_direction(Vector2(0, 1))
-    for _ in range(1):
-        s.update(300)
-    print(s)
-    print(s.self_intersecting())
-    s.change_direction(Vector2(-1, 0))
-    for _ in range(1):
-        s.update(300)
-    print(s)
-    print(s.self_intersecting())
+    print("head", s.head)
+    s.self_intersecting()
     
     

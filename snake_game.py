@@ -8,15 +8,15 @@ from utils import *
 from snake import *
 
 FPS = 60                            # Game fps
-SNAKE_START_LENGTH = 5
+SNAKE_START_LENGTH = 6
 
 DIRECTION_UP    = Vector2(0, -1)
 DIRECTION_DOWN  = Vector2(0, 1)
 DIRECTION_LEFT  = Vector2(-1, 0)
 DIRECTION_RIGHT = Vector2(1, 0)
 
-WORLD_SIZE = Vector2(24, 16)
-BLOCK_SIZE = 30
+WORLD_SIZE = Vector2(36, 24)
+BLOCK_SIZE = 10
 
 # Colors
 BACKGROUD_COLOR = 0, 0, 0
@@ -88,7 +88,6 @@ class SnakeGame(object):
         width = DIRECTION_RIGHT * self.block_size
         height = DIRECTION_DOWN * self.block_size
         rect = [tuple(t) for t in (p * self.block_size, width + height)]
-        print(rect)
         return Rect(rect)
 
     def draw(self):
@@ -108,7 +107,7 @@ class SnakeGame(object):
     def play(self):
         """Play game until QUIT, main game loop"""
         while True:
-            dt = self.clock.tick(FPS)
+            dt = self.clock.tick(60)
             for e in pygame.event.get():
                 if e.type == QUIT:
                     return
@@ -118,7 +117,7 @@ class SnakeGame(object):
                 self.update(dt)
                 self.draw()
             else:
-                self.draw_death
+                self.draw_death()
             pygame.display.flip()
 
 def main():

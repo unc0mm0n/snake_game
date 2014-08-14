@@ -74,6 +74,12 @@ class Vector2(object):
     def __rmul__(self, s):
         return Vector2(*tuple(v*s for v in self))
 
+    def __div__(self, s):
+        return self.__truediv__(s)
+    
+    def __truediv__(self, s):
+        return Vector2(*tuple(v//s for v in self))
+
     def __neg__(self):
         return -1 * self
 
