@@ -1,12 +1,17 @@
+''' module docstring'''
+
 from collections import deque
 
+
 class Queue(object):
+
     '''
         A basic implementation of a queue using a Deque
         O(1) addition and removal
 
         enqueue(self, item) => Add an item to back of the queue
-        dequeue(self, item) => Remove an item from the front of the queue, raise IndexError if empty
+        dequeue(self, item) => Remove an item from the front of the queue,
+        raise IndexError if empty
         is_empty(self) => return True if empty
     '''
 
@@ -31,11 +36,15 @@ class Queue(object):
     def __len__(self):
         return len(self.items)
 
+
 class Vector2(object):
+
     '''
         A basic implementation of a Vector2. Holding x,y coordinates.
-        supports addition and subtraction of vectors, and multiplication and division by a scalar
+        supports addition and subtraction of vectors, and multiplication and
+        division by a scalar
     '''
+
     def __init__(self, x, y):
         self.pos = (x, y)
 
@@ -76,7 +85,7 @@ class Vector2(object):
 
     def __div__(self, s):
         return self.__truediv__(s)
-    
+
     def __truediv__(self, s):
         return Vector2(*tuple(v//s for v in self))
 
